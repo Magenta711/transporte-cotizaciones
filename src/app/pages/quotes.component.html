@@ -26,11 +26,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let quote of quotes">
-        <td>{{ quote.client }}</td>
-        <td>{{ quote.origin }}</td>
-        <td>{{ quote.destination }}</td>
-        <td>{{ quote.date }}</td>
-        <td>{{ quote.price | currency:'COP' }}</td>
+        <td data-label="client">{{ quote.client }}</td>
+        <td data-label="origin">{{ quote.origin }}</td>
+        <td data-label="destination">{{ quote.destination }}</td>
+        <td data-label="date">{{ quote.date }}</td>
+        <td data-label="price">{{ quote.price | currency:'COP' }}</td>
         <td>
           <button (click)="editQuote(quote)">Editar</button>
           <button (click)="deleteQuote(quote.id)">Eliminar</button>
