@@ -1,0 +1,41 @@
+<button (click)="logout()">Logout</button>
+<div class="quotes-container">
+  <form [formGroup]="quoteForm" (ngSubmit)="addOrUpdateQuote()">
+    <h3>{{ editingId ? 'Editar' : 'Nueva' }} Cotización</h3>
+
+    <input formControlName="client" placeholder="Cliente" />
+    <input formControlName="origin" placeholder="Origen" />
+    <input formControlName="destination" placeholder="Destino" />
+    <input formControlName="date" type="date" placeholder="Fecha" />
+    <input formControlName="price" type="number" placeholder="Precio" />
+
+    <button type="submit">{{ editingId ? 'Actualizar' : 'Agregar' }}</button>
+    <button type="button" *ngIf="editingId" (click)="cancelEdit()">Cancelar</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Cliente</th>
+        <th>Origen</th>
+        <th>Destino</th>
+        <th>Fecha</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let quote of quotes">
+        <td>{{ quote.client }}</td>
+        <td>{{ quote.origin }}</td>
+        <td>{{ quote.destination }}</td>
+        <td>{{ quote.date }}</td>
+        <td>{{ quote.price | currency:'COP' }}</td>
+        <td>
+          <button (click)="editQuote(quote)">Editar</button>
+          <button (click)="deleteQuote(quote.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
