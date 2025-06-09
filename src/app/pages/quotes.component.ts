@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { QuoteService } from '../core/quote.service';
 import { AuthService } from '../core/auth.service';
 
 interface Quote {
   id: string;
   client: string;
+  type: string;
+  distance: number;
+  number_persons: number;
+  time: number;
   origin: string;
   destination: string;
   date: string;
@@ -22,14 +26,15 @@ export class QuotesComponent {
   editingId: string | null = null;
 
   quoteForm = this.fb.group({
-    client: ['', Validators.required],
-    origin: ['', Validators.required],
-    destination: ['', Validators.required],
-    date: [
-      '',
-      [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)],
-    ],
-    price: [0, [Validators.required, Validators.min(0)]],
+    client: new FormControl('', Validators.required),
+    type: new FormControl('', Validators.required),
+    distance: new FormControl('', Validators.required),
+    number_persons: new FormControl('', Validators.required),
+    time: new FormControl('', Validators.required),
+    origin: new FormControl('', Validators.required),
+    destination: new FormControl('', Validators.required),
+    date: new FormControl('', Validators.required),
+    price: new FormControl('', Validators.required),
   });
 
   constructor(

@@ -3,6 +3,10 @@ import { Injectable } from '@angular/core';
 export interface Quote {
   id: string;
   client: string;
+  type: string;
+  distance: number;
+  number_persons: number;
+  time: number;
   origin: string;
   destination: string;
   date: string;
